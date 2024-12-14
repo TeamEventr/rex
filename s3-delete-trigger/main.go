@@ -9,8 +9,8 @@ import (
 
 type S3Event struct {
 	Records []struct {
-		s3 struct {
-			object struct {
+		S3 struct {
+			Object struct {
 				Key string `json:"key"`
 			} `json:"object"`
 		} `json:"s3"`
@@ -19,8 +19,7 @@ type S3Event struct {
 
 func HandleRequest(ctx context.Context, s3Event S3Event) error {
 	for _, record := range s3Event.Records {
-		objectKey := record.s3.object.Key
-		log.Printf("Object deleted: %s", objectKey)
+		log.Printf("Object details: %s", record)
 
 		// Add your desired logic here, e.g.,
 		// - Update a database to reflect the deletion
