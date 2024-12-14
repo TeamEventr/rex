@@ -19,7 +19,8 @@ type S3Event struct {
 
 func HandleRequest(ctx context.Context, s3Event S3Event) error {
 	for _, record := range s3Event.Records {
-		log.Printf("Object details: %s", record)
+		objectKey := record.S3.Object.Key
+		log.Printf("Object deleted: %s", objectKey)
 
 		// Add your desired logic here, e.g.,
 		// - Update a database to reflect the deletion
